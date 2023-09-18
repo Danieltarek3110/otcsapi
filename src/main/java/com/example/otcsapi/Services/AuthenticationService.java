@@ -1,26 +1,42 @@
 package com.example.otcsapi.Services;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+
+@Service
 public class AuthenticationService {
 
-    @Value("${OTCS_BASE_URL}")
-    private String OTCS_BASE_URL ;
+    @Value("${BASE_URL}")
+    public String BASE_URL ;
 
     public String authenticate(String username , String password){
-        String url= OTCS_BASE_URL + "v1/auth";
+        String url= BASE_URL + "v1/auth";
+
+        LinkedMultiValueMap<String , String> map = new LinkedMultiValueMap<>();
+        map.add("username", username);
+        map.add("password", password);
+        HttpEntity<LinkedMultiValueMap<String , String>> body = new HttpEntity<LinkedMultiValueMap<String,String>>(map);
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.POST, body, String.class);
 
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
-            return responseEntity.getBody();
+
+            JSONObject result = new JSONObject(responseEntity.getBody());
+            JSONObject response = new JSONObject();
+
+            response.put("tocken" , result.get("ticket"));
+            response.put("StatusCode", 200);
+
+            return response.toString();
         } else {
             throw new RuntimeException("Failed to fetch data from API: " + responseEntity.getStatusCode());
         }
     }
 }
-
