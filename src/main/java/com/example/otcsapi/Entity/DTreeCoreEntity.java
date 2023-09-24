@@ -1,17 +1,16 @@
 package com.example.otcsapi.Entity;
 
-import org.springframework.data.annotation.Id;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "DTreeCore")
-public class DTreeCore {
-    @Id
+public class DTreeCoreEntity {
+    
+    @jakarta.persistence.Id
     @Column(name = "DataID")
-    private String DataID;
+    private long DataID;
 
     @Column(name = "OwnerID")
     private String OwnerID;
@@ -19,35 +18,50 @@ public class DTreeCore {
     @Column(name = "Name")
     private String Name;
 
+    @Column(name = "ParentID")
+    private int ParentID;
 
-    
-    public DTreeCore() {
-    }
-    public DTreeCore(String dataID, String ownerID, String name) {
-        DataID = dataID;
-        OwnerID = ownerID;
-        Name = name;
-    }
-    public String getDataID() {
+    public long getDataID() {
         return DataID;
     }
-    public void setDataID(String dataID) {
+
+    public void setDataID(long dataID) {
         DataID = dataID;
     }
+
     public String getOwnerID() {
         return OwnerID;
     }
+
     public void setOwnerID(String ownerID) {
         OwnerID = ownerID;
     }
+
     public String getName() {
         return Name;
     }
+
     public void setName(String name) {
         Name = name;
     }
 
+    public int getParentID() {
+        return ParentID;
+    }
+
+    public void setParentID(int parentID) {
+        ParentID = parentID;
+    }
+
+    public DTreeCoreEntity(long dataID, String ownerID, String name, int parentID) {
+        DataID = dataID;
+        OwnerID = ownerID;
+        Name = name;
+        ParentID = parentID;
+    }
+
+    public DTreeCoreEntity() {
+    }
 
 
-    
 }
