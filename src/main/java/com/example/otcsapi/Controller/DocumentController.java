@@ -25,12 +25,14 @@ public class DocumentController {
     @Autowired
     private DocumentService documentService;
 
-    @PostMapping(value={"","/"} , produces = MediaType.MULTIPART_FORM_DATA_VALUE) 
-    public String postMethod(@RequestParam MultipartFile file ) {
-        
-        documentService.uploadDocument(file , "2000" );
-        return " " ; 
-    }
+    @PostMapping(value={"","/"} , produces = MediaType.APPLICATION_JSON_VALUE) 
+    public String postMethod(@RequestParam("file") MultipartFile file ,
+    @RequestParam("fullpath") String fullpath , 
+    @RequestParam("username") String username ,
+     @RequestParam("password") String password) 
+     {
+        return documentService.uploadDocument(file , fullpath , username , password ); 
+     }
     
 
     @GetMapping(value={"","/"} , produces = MediaType.APPLICATION_JSON_VALUE)

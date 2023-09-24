@@ -14,4 +14,7 @@ public interface DatabaseRepository extends JpaRepository<DTreeCoreEntity , Long
     @Query("SELECT d FROM DTreeCoreEntity d WHERE d.ParentID = 2000")
     public List<DTreeCoreEntity> getAll();
 
+    @Query("SELECT d from DTreeCoreEntity d WHERE d.Name = :Name AND d.ParentID = :ParentID")
+    public List<DTreeCoreEntity> getNodeID(String Name , long ParentID);
+
 }

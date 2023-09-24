@@ -32,9 +32,8 @@ public class AuthenticationService {
             JSONObject response = new JSONObject();
 
             response.put("tocken" , result.get("ticket"));
-            response.put("StatusCode", 200);
 
-            return response.toString();
+            return result.get("ticket").toString();
         } else {
             throw new RuntimeException("Failed to fetch data from API: " + responseEntity.getStatusCode());
         }
