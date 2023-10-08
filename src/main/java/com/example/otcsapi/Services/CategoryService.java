@@ -22,7 +22,7 @@ public class CategoryService {
         return repo.getAll();
     }
 
-        public List<CatRegionMapEntity> ListCatByName(String Category) {
+        public List<CatRegionMapEntity> getCategoryByName(String Category) {
         return repo.getCategoryByName(Category);
     }
 }
