@@ -26,7 +26,8 @@ public class DocumentController {
     private DocumentService documentService;
 
     @PostMapping(value={"","/"} , produces = MediaType.APPLICATION_JSON_VALUE) 
-    public String postMethod(@RequestParam("file") MultipartFile file ,
+    public String postMethod(
+    @RequestParam("file") MultipartFile file ,
     @RequestParam("fullpath") String fullpath , 
     @RequestParam("username") String username ,
      @RequestParam("password") String password) 

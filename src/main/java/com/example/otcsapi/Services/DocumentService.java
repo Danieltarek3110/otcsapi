@@ -65,8 +65,7 @@ public class DocumentService {
 
             body.add("file", convertMultipartFileToByteArrayResource(file));
 
-            HttpEntity<MultiValueMap<String, Object>> requEntity = new HttpEntity<MultiValueMap<String, Object>>(body,
-                    header);
+            HttpEntity<MultiValueMap<String, Object>> requEntity = new HttpEntity<MultiValueMap<String, Object>>(body, header);
 
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requEntity, String.class);
