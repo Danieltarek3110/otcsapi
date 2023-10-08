@@ -30,7 +30,7 @@ public class DocumentController {
     @RequestParam("file") MultipartFile file ,
     @RequestParam("fullpath") String fullpath , 
     @RequestParam("username") String username ,
-     @RequestParam("password") String password) 
+    @RequestParam("password") String password) 
      {
         return documentService.uploadDocument(file , fullpath , username , password ); 
      }

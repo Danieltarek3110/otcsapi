@@ -17,6 +17,5 @@ public class CatRegionMapEntity {
 
     @Column(name ="AttrName")
     private String AttrName;
-
     
 }
