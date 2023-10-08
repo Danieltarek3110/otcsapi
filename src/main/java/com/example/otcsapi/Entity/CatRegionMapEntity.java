@@ -17,5 +17,29 @@ public class CatRegionMapEntity {
 
     @Column(name ="AttrName")
     private String AttrName;
+
+    public int getCatID() {
+        return CatID;
+    }
+
+    public void setCatID(int catID) {
+        CatID = catID;
+    }
+
+    public String getCatName() {
+        return CatName;
+    }
+
+    public void setCatName(String catName) {
+        CatName = catName;
+    }
+
+    public String getAttrName() {
+        return AttrName;
+    }
+
+    public void setAttrName(String attrName) {
+        AttrName = attrName;
+    }
     
 }

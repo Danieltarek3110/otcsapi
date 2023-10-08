@@ -18,13 +18,11 @@ public class CategoryService {
     @Autowired
     private CategoriesRepository repo;
     
-    
-    public String assignCategory(){
-        return "";
+    public List<CatRegionMapEntity> getCategories() {
+        return repo.getAll();
     }
 
-
-    public List<CatRegionMapEntity> ListCat() {
-        return repo.getAll();
+        public List<CatRegionMapEntity> ListCatByName(String Category) {
+        return repo.getCategoryByName(Category);
     }
 }
